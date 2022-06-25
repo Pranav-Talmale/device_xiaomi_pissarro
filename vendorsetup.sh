@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-FDEVICE="fleur"
+FDEVICE="pissarro"
 #set -o xtrace
 
 fox_get_target_device() {
@@ -43,7 +43,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_FBE_METADATA_MOUNT_IGNORE=1
 
 	# Mediatek
-	export FOX_RECOVERY_BOOT_PARTITION="/dev/block/platform/bootdevice/by-name/boot"
+	export FOX_RECOVERY_BOOT_PARTITION="/dev/block/by-name/boot"
 
 	export OF_USE_MAGISKBOOT=1
 	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
