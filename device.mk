@@ -14,23 +14,23 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/xiaomi/fleur
+# Virtual A/B
+ENABLE_VIRTUAL_AB := true
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
+# Enable project quotas and casefolding for emulated storage without sdcardfs
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
+# Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+
+LOCAL_PATH := device/xiaomi/pissarro
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # API
 PRODUCT_SHIPPING_API_LEVEL := 30
-
-# Virtual A/B
-ENABLE_VIRTUAL_AB := true
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-
-# Enable project quotas and casefolding for emulated storage without sdcardfs
-$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-
-# Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # A/B
 PRODUCT_PACKAGES += \
@@ -59,8 +59,8 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Fastbootd
 PRODUCT_PACKAGES += \
-	fastbootd \
-	android.hardware.fastboot@1.0-impl-mock
+    fastbootd \
+    android.hardware.fastboot@1.0-impl-mock
 
 # Health HAL
 PRODUCT_PACKAGES += \
@@ -69,10 +69,10 @@ PRODUCT_PACKAGES += \
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
-	android.hardware.gatekeeper@1.0-service
+    android.hardware.gatekeeper@1.0-service
 
 PRODUCT_COPY_FILES += \
-	$(OUT_DIR)/target/product/pissarro/vendor/bin/hw/android.hardware.gatekeeper@1.0-service:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/android.hardware.gatekeeper@1.0-service
+$(OUT_DIR)/target/product/pissarro/vendor/bin/hw/android.hardware.gatekeeper@1.0-service:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/android.hardware.gatekeeper@1.0-service
 
 # Additional Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
