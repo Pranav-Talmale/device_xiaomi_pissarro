@@ -39,6 +39,8 @@ TW_INCLUDE_REPACKTOOLS := true
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
+    lk \
+    preloader \
     system \
     system_ext \
     product \
@@ -46,7 +48,8 @@ AB_OTA_PARTITIONS += \
     odm \
     vbmeta \
     vbmeta_system \
-    vbmeta_vendor
+    vbmeta_vendor \
+    vendor_boot
 
 # Kernel
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
@@ -87,13 +90,8 @@ BOARD_DTBOIMG_PARTITION_SIZE := 33554432
 BOARD_SUPER_PARTITION_SIZE := 9125756928
 BOARD_SUPER_PARTITION_GROUPS := main
 BOARD_MAIN_SIZE := 4400000000
-BOARD_MAIN_PARTITION_LIST := \
-	system \
-	vendor \
-	product \
-    odm \
-	system_ext
-	
+BOARD_MAIN_PARTITION_LIST := system vendor product odm system_ext
+
 # Android Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
