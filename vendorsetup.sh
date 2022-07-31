@@ -18,19 +18,19 @@
 # 	Please maintain this if you use this script or any part of it
 #
 FDEVICE="pissarro"
-#set -o xtrace
 
 fox_get_target_device() {
-local chkdev=$(echo "$BASH_SOURCE" | grep -w $FDEVICE)
-   if [ -n "$chkdev" ]; then 
+local chkdev=$(echo "$BASH_SOURCE" | grep -w \"$FDEVICE\")
+   if [ -n "$chkdev" ]; then
       FOX_BUILD_DEVICE="$FDEVICE"
    else
-      chkdev=$(set | grep BASH_ARGV | grep -w $FDEVICE)
+      chkdev=$(set | grep BASH_ARGV | grep -w \"$FDEVICE\")
       [ -n "$chkdev" ] && FOX_BUILD_DEVICE="$FDEVICE"
    fi
 }
 
 if [ -z "$1" -a -z "$FOX_BUILD_DEVICE" ]; then
+   echo "** WARNING **: Always set FOX_BUILD_DEVICE to the device codename before starting to build for any device!"
    fox_get_target_device
 fi
 
@@ -40,7 +40,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
         #Building
               export LC_ALL="C"
-              export FOX_MANIFEST_VER="11.0"
+              export FOX_MANIFEST_VER="12.1"
               export ALLOW_MISSING_DEPENDENCIES=true
               export OF_TARGET_DEVICES="pissarro,pissarroin,pissarroinpro,pissarropro"
               export TARGET_DEVICE_ALT="pissarroin,pissarroinpro,pissarropro"
@@ -87,7 +87,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
               export OF_STATUS_INDENT_RIGHT=48
               export OF_HIDE_NOTCH=1
               export OF_CLOCK_POS=1
-
 
         #Partitions
               export FOX_RECOVERY_SYSTEM_PARTITION="/dev/block/mapper/system"
