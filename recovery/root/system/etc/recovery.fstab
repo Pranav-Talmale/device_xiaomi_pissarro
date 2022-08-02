@@ -14,18 +14,11 @@ odm                                                     /odm                   e
 #Cache
 /dev/block/by-name/rescue                               /cache                 ext4          noatime,nosuid,nodev,noauto_da_alloc,discard                              wait,check,formattable
 
-#Persist
-/dev/block/by-name/persist                              /mnt/vendor/persist    ext4          noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc                  wait,check,formattable
-
 #Misc
 /dev/block/by-name/misc                                 /misc                  emmc          defaults                                                                   defaults
 
 #Other Partitions
-/dev/block/by-name/protect1                             /mnt/vendor/protect_f  ext4          noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc                   wait,check,formattable
-/dev/block/by-name/protect2                             /mnt/vendor/protect_s  ext4          noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc                   wait,check,formattable
-/dev/block/by-name/nvdata                               /mnt/vendor/nvdata     ext4          noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc                   wait,check,formattable
-/dev/block/by-name/nvcfg                                /mnt/vendor/nvcfg      ext4          noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc                   wait,check,formattable
-/dev/block/by-name/vbmeta_vendor                        /vbmeta_vendor         emmc          defaults                                                                   first_stage_mount,nofail,slotselect
-/dev/block/by-name/vbmeta_system                        /vbmeta_system         emmc          defaults                                                                   first_stage_mount,nofail,slotselect,avb=vbmeta
+/dev/block/by-name/vbmeta_vendor                        /vbmeta_vendor         emmc          defaults                                                                   first_stage_mount,slotselect
+/dev/block/by-name/vbmeta_system                        /vbmeta_system         emmc          defaults                                                                   first_stage_mount,slotselect,avb=vbmeta
 /dev/block/by-name/vbmeta                               /vbmeta                emmc          defaults                                                                   defaults
-/dev/block/by-name/boot                                 /boot                  emmc          defaults                                                                   first_stage_mount,nofail,slotselect
+/dev/block/by-name/boot                                 /boot                  emmc          defaults                                                                   slotselect
